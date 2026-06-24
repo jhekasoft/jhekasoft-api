@@ -1,0 +1,5 @@
+/build
+config.yaml
+/tmp
+/go.work
+/go.work.sum

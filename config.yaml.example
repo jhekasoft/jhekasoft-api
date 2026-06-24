@@ -1,0 +1,4 @@
+Mode: "develop"
+HTTP:
+  Port: 1988
+  BaseURL: "http://localhost:1988"
