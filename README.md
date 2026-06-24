@@ -1,30 +1,25 @@
 # jhekasoft-api
 
-`jhekasoft-api` is a backend for all the projects.
+`jhekasoft-api` is a backend for https://jhekasoft.github.io.
 
-![cat](./modules/doc/data/public/android-chrome-192x192.png)
 
 ```
+Powered by:
 ▗▄▄▄▖▗▄▄▖  ▗▄▖  ▗▄▄▖▗▖ ▗▖▗▄▄▄▖▗▖  ▗▖▗▄▄▄ 
 ▐▌   ▐▌ ▐▌▐▌ ▐▌▐▌   ▐▌▗▞▘▐▌   ▐▛▚▖▐▌▐▌  █
 ▐▛▀▀▘▐▛▀▚▖▐▛▀▜▌▐▌   ▐▛▚▖ ▐▛▀▀▘▐▌ ▝▜▌▐▌  █
 ▐▙▄▄▖▐▙▄▞▘▐▌ ▐▌▝▚▄▄▖▐▌ ▐▌▐▙▄▄▖▐▌  ▐▌▐▙▄▄▀
 ```
 
-## Create database
-
-```bash
-sudo -iu postgres
-createdb ebackend
-```
+[e-backend](https://github.com/jhekasoft/e-backend)
 
 ## Prepare
 
 ```bash
-cp .config.example .config
+cp config.yaml.example config.yaml
 ```
 
-And then edit `.config` file.
+And then edit `config.yaml` file.
 
 ## Run HTTP-server
 
@@ -50,35 +45,4 @@ Run binary:
 
 ```bash
 ./build/jhekasoft-api serve
-```
-
-## Run as service (POSIX systems with systemd)
-
-```bash
-sudo mkdir /opt/jhekasoft-api
-sudo cp ./build/* /opt/jhekasoft-api -r
-sudo cp /opt/jhekasoft-api/.jhekasoft-api.example /opt/jhekasoft-api/.jhekasoft-api
-sudo cp ./systemd/jhekasoft-api.service /etc/systemd/system/
-sudo systemctl daemon-reload
-sudo systemctl enable --now jhekasoft-api.service
-```
-
-## Module generation
-
-See [e-backend-cli](https://github.com/jhekasoft/e-backend-cli).
-
-# Run with docker
-
-Build image:
-
-```bash
-docker build -f dockerfiles/Dockerfile -t jhekasoft-api .
-```
-
-Run:
-
-```bash
-docker run --name jhekasoft-api --rm --network host \
--v "$(pwd)/.jhekasoft-api:/app/.jhekasoft-api" \
-jhekasoft-api
 ```
