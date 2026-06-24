@@ -9,8 +9,13 @@ DEV_TAGS=all dev
 
 all: clean build doc data
 
+all-no-workspace: clean build-no-workspace doc data
+
 build:
 	go build -ldflags "$(LDFLAGS)" -tags="$(TAGS)" -o ./build/jhekasoft-api
+
+build-no-workspace:
+	GOWORK=off go build -ldflags "$(LDFLAGS)" -tags="$(TAGS)" -o ./build/jhekasoft-api
 
 doc:
 	# Update REST doc's version
@@ -36,7 +41,10 @@ clean:
 run:
 	go run -ldflags "$(LDFLAGS)" -tags="$(DEV_TAGS)" main.go serve
 
+run-no-workspace:
+	GOWORK=off go run -ldflags "$(LDFLAGS)" -tags="$(DEV_TAGS)" main.go serve
+
 test:
 	go test ./...
 
-.PHONY: all doc run sum
+.PHONY: all doc run

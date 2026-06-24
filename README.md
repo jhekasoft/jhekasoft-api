@@ -46,3 +46,19 @@ Run binary:
 ```bash
 ./build/jhekasoft-api serve
 ```
+
+# Run with docker
+
+Build image:
+
+```bash
+docker build -f Dockerfile -t jhekasoft-api .
+```
+
+Run:
+
+```bash
+docker run --name jhekasoft-api --rm --network host \
+-v "$(pwd)/config.yaml:/app/config.yaml" \
+jhekasoft-api
+```
