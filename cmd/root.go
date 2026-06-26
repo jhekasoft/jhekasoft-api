@@ -28,19 +28,20 @@ import (
 
 	"github.com/jhekasoft/e-backend/models"
 
+	eCmd "github.com/jhekasoft/e-backend/cmd"
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
 )
+
+const subtitle = "jhekasoft-api"
 
 var cfgFile string
 
 // rootCmd represents the base command when called without any subcommands
 var rootCmd = &cobra.Command{
 	Use:   "jhekasoft-api",
-	Short: "jhekasoft-api service",
-	Long: `jhekasoft-api service
-
-Please use commands.`,
+	Short: "jhekasoft-api",
+	Long:  eCmd.Banner(subtitle, internal.Version, internal.BuildTime),
 }
 
 // Execute adds all child commands to the root command and sets flags appropriately.
@@ -89,9 +90,6 @@ func initConfig() {
 	// Defaults
 	viper.SetDefault("Mode", models.AppModeProduction)
 	viper.SetDefault("HTTP", models.ConfigHTTP{Port: 1988, BaseURL: "http://localhost:1988"})
-	viper.SetDefault("MQTT.Enabled", false)
-	viper.SetDefault("MQTT.Host", "localhost")
-	viper.SetDefault("MQTT.Port", 1883)
 
 	// If a config file is found, read it in.
 	if err := viper.ReadInConfig(); err == nil {
@@ -100,14 +98,5 @@ func initConfig() {
 }
 
 func printBanner() {
-	fmt.Print(`
-▗▄▄▄▖▗▄▄▖  ▗▄▖  ▗▄▄▖▗▖ ▗▖▗▄▄▄▖▗▖  ▗▖▗▄▄▄ 
-▐▌   ▐▌ ▐▌▐▌ ▐▌▐▌   ▐▌▗▞▘▐▌   ▐▛▚▖▐▌▐▌  █
-▐▛▀▀▘▐▛▀▚▖▐▛▀▜▌▐▌   ▐▛▚▖ ▐▛▀▀▘▐▌ ▝▜▌▐▌  █
-▐▙▄▄▖▐▙▄▞▘▐▌ ▐▌▝▚▄▄▖▐▌ ▐▌▐▙▄▄▖▐▌  ▐▌▐▙▄▄▀
-
-`)
-
-	fmt.Printf("Version: %s\n", internal.Version)
-	fmt.Printf("Build time: %s\n", internal.BuildTime)
+	fmt.Print(eCmd.Banner(subtitle, internal.Version, internal.BuildTime) + "\n\n")
 }

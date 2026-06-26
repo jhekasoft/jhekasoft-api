@@ -2,7 +2,7 @@ openapi: 3.0.3
 info:
   title: jhekasoft-api
   description: jhekasoft-api REST API 😼 | [Documentation](/doc)
-  version: 1.0.0
+  version: 1.0.1
 tags:
   - name: Health
     description: Health API
